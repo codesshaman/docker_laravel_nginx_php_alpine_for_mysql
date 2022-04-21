@@ -8,3 +8,7 @@ RUN:
 cd minimal_docker_laravel_nginx_php
 
 sudo docker-compose up -d --build
+
+Connect:
+
+http://localhost:8082/
