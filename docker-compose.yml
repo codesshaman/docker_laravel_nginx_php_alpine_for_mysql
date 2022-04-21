@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./laravel:/var/www
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+      - ./laravel/storage/docker/log/nginx:/var/log/nginx
+    ports:
+      - "8082:80"
+    tty:  true
+    restart: unless-stopped
+    container_name: nginx_laravel
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    tty:  true
+    user: 1000:1000
+    restart: unless-stopped
+    volumes:
+      - ./laravel:/var/www
+      - ./laravel/storage/docker/log/nginx:/var/log/nginx
+    container_name: app
