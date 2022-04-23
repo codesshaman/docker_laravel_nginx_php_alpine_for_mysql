@@ -21,7 +21,7 @@ STOP:
 docker-compose down
 
 CONNECT:
-docker exec -it nginx_simple_php sh
+docker exec -it nginx_laravel sh
 
 OPEN:
 http://localhost/
